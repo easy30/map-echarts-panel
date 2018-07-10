@@ -5,8 +5,11 @@ import './libs/echarts-liquidfill.min'; // eslint-disable-line
 import './libs/echarts-wordcloud.min'; // eslint-disable-line
 import './libs/dark'; // eslint-disable-line
 import './css/style.css!'; // eslint-disable-line
-import './libs/bmap.js'; // eslint-disable-line
-import './libs/getBmap.js'; // eslint-disable-line
+//import './libs/bmap.js'; // eslint-disable-line
+import './libs/china.js' // eslint-disable-line
+import './libs/beijing.js'// eslint-disable-line
+import './libs/jiangxi.js'// eslint-disable-line
+//import './libs/getBmap.js'; // eslint-disable-line
 
 export class EchartsCtrl extends MetricsPanelCtrl { // eslint-disable-line
 
@@ -23,10 +26,11 @@ export class EchartsCtrl extends MetricsPanelCtrl { // eslint-disable-line
       fakeData: '',
       url: '',
       method: 'GET',
+      params: '',
       updateInterval: 10000,
     };
 
-    this.maps = ['世界', '中国', '北京'];
+    this.maps = ['世界', '中国', '河北'];
 
     _.defaults(this.panel, panelDefaults);
 
@@ -39,14 +43,13 @@ export class EchartsCtrl extends MetricsPanelCtrl { // eslint-disable-line
     this.updateData();
   }
 
-  // post请求
+  //请求
   updateData() {
     const that = this;
     let xmlhttp;
     if (this.panel.USE_URL && this.panel.USE_FAKE_DATA && this.panel.fakeData) {
       this.data = eval(this.panel.fakeData);
-    } else
-    if (that.panel.USE_URL && !that.panel.USE_FAKE_DATA && that.panel.url && that.panel.method) {
+    } else if (that.panel.USE_URL && !that.panel.USE_FAKE_DATA && that.panel.url && that.panel.method) {
       if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
       } else {
@@ -54,12 +57,23 @@ export class EchartsCtrl extends MetricsPanelCtrl { // eslint-disable-line
       }
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          that.UrlData = JSON.parse(xmlhttp.responseText);
+          that.data = JSON.parse(xmlhttp.responseText);
           that.onDataReceived();
         }
       };
-      xmlhttp.open(that.panel.method, that.panel.url, true);
-      xmlhttp.send();
+      if(that.panel.method == 'GET'){
+          if(that.panel.params){
+            xmlhttp.open(that.panel.method, that.panel.url + '?' + that.panel.params, true);
+          }else{
+            xmlhttp.open(that.panel.method, that.panel.url, true);
+          }
+          xmlhttp.send();
+      }else{
+        xmlhttp.open(that.panel.method, that.panel.url, true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send(that.panel.params);
+      }
+
     } else {
       xmlhttp = null;
     }
@@ -80,8 +94,8 @@ export class EchartsCtrl extends MetricsPanelCtrl { // eslint-disable-line
   }
 
   onInitEditMode() {
-    this.addEditorTab('Data Source', 'public/plugins/dxc-echarts-panel/partials/editer-metric.html', 2);
-    this.addEditorTab('Ecahrts Configuration', 'public/plugins/dxc-echarts-panel/partials/editor-echarts.html', 3);
+    this.addEditorTab('Data Source', 'public/plugins/map-echarts-panel/partials/editer-metric.html', 2);
+    this.addEditorTab('Ecahrts Configuration', 'public/plugins/map-echarts-panel/partials/editor-echarts.html', 3);
   }
 
   importMap() {
@@ -93,21 +107,19 @@ export class EchartsCtrl extends MetricsPanelCtrl { // eslint-disable-line
       case '中国':
         System.import(this.getPanelPath() + 'libs/china.js'); // eslint-disable-line
         break;
-      case '北京':
-        System.import(this.getPanelPath() + 'libs/beijing.js'); // eslint-disable-line
+      case '河北':
+        System.import(this.getPanelPath() + 'libs/hebei.js'); // eslint-disable-line
         break;
-      // case '百度地图':
-      //   System.import(this.getPanelPath() + 'libs/bmap.js');
-      //   System.import(this.getPanelPath() + 'libs/getBmap.js');
-      // break;
       default:
         break;
     }
   }
 
   getPanelPath() {
-    // the system loader preprends publib to the url, add a .. to go back one level
-    return `../${grafanaBootData.settings.panels[this.pluginId].baseUrl}/`; // eslint-disable-line
+      var panels = grafanaBootData.settings.panels;
+      var thisPanel = panels[this.pluginId];
+      var thisPanelPath = thisPanel.baseUrl + '/';
+      return thisPanelPath; // eslint-disable-line
   }
 
   link(scope, elem, attrs, ctrl) {

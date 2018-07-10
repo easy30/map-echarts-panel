@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echarts-liquidfill.min', './libs/echarts-wordcloud.min', './libs/dark', './css/style.css!', './libs/bmap.js', './libs/getBmap.js'], function (_export, _context) {
+System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echarts-liquidfill.min', './libs/echarts-wordcloud.min', './libs/dark', './css/style.css!', './libs/china.js', './libs/beijing.js', './libs/jiangxi.js'], function (_export, _context) {
   "use strict";
 
   var MetricsPanelCtrl, _, echarts, _createClass, EchartsCtrl;
@@ -42,7 +42,7 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
       _ = _lodash.default;
     }, function (_libsEchartsMin) {
       echarts = _libsEchartsMin.default;
-    }, function (_libsEchartsLiquidfillMin) {}, function (_libsEchartsWordcloudMin) {}, function (_libsDark) {}, function (_cssStyleCss) {}, function (_libsBmapJs) {}, function (_libsGetBmapJs) {}],
+    }, function (_libsEchartsLiquidfillMin) {}, function (_libsEchartsWordcloudMin) {}, function (_libsDark) {}, function (_cssStyleCss) {}, function (_libsChinaJs) {}, function (_libsBeijingJs) {}, function (_libsJiangxiJs) {}],
     execute: function () {
       _createClass = function () {
         function defineProperties(target, props) {
@@ -82,10 +82,11 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
             fakeData: '',
             url: '',
             method: 'GET',
+            params: '',
             updateInterval: 10000
           };
 
-          _this.maps = ['世界', '中国', '北京'];
+          _this.maps = ['世界', '中国', '河北'];
 
           _.defaults(_this.panel, panelDefaults);
 
@@ -99,7 +100,7 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
           return _this;
         }
 
-        // post请求
+        //请求
 
 
         _createClass(EchartsCtrl, [{
@@ -119,12 +120,22 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
               }
               xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                  that.UrlData = JSON.parse(xmlhttp.responseText);
+                  that.data = JSON.parse(xmlhttp.responseText);
                   that.onDataReceived();
                 }
               };
-              xmlhttp.open(that.panel.method, that.panel.url, true);
-              xmlhttp.send();
+              if (that.panel.method == 'GET') {
+                if (that.panel.params) {
+                  xmlhttp.open(that.panel.method, that.panel.url + '?' + that.panel.params, true);
+                } else {
+                  xmlhttp.open(that.panel.method, that.panel.url, true);
+                }
+                xmlhttp.send();
+              } else {
+                xmlhttp.open(that.panel.method, that.panel.url, true);
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send(that.panel.params);
+              }
             } else {
               xmlhttp = null;
             }
@@ -150,8 +161,8 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
         }, {
           key: 'onInitEditMode',
           value: function onInitEditMode() {
-            this.addEditorTab('Data Source', 'public/plugins/dxc-echarts-panel/partials/editer-metric.html', 2);
-            this.addEditorTab('Ecahrts Configuration', 'public/plugins/dxc-echarts-panel/partials/editor-echarts.html', 3);
+            this.addEditorTab('Data Source', 'public/plugins/map-echarts-panel/partials/editer-metric.html', 2);
+            this.addEditorTab('Ecahrts Configuration', 'public/plugins/map-echarts-panel/partials/editor-echarts.html', 3);
           }
         }, {
           key: 'importMap',
@@ -164,13 +175,9 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
               case '中国':
                 System.import(this.getPanelPath() + 'libs/china.js'); // eslint-disable-line
                 break;
-              case '北京':
-                System.import(this.getPanelPath() + 'libs/beijing.js'); // eslint-disable-line
+              case '河北':
+                System.import(this.getPanelPath() + 'libs/hebei.js'); // eslint-disable-line
                 break;
-              // case '百度地图':
-              //   System.import(this.getPanelPath() + 'libs/bmap.js');
-              //   System.import(this.getPanelPath() + 'libs/getBmap.js');
-              // break;
               default:
                 break;
             }
@@ -178,8 +185,10 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
         }, {
           key: 'getPanelPath',
           value: function getPanelPath() {
-            // the system loader preprends publib to the url, add a .. to go back one level
-            return '../' + grafanaBootData.settings.panels[this.pluginId].baseUrl + '/'; // eslint-disable-line
+            var panels = grafanaBootData.settings.panels;
+            var thisPanel = panels[this.pluginId];
+            var thisPanelPath = thisPanel.baseUrl + '/';
+            return thisPanelPath; // eslint-disable-line
           }
         }, {
           key: 'link',

@@ -12,14 +12,14 @@
     "keywords": ["Echarts", "panel"],
     "links": [
       {"name": "Project site", "url": "https://github.com/cehome/map-echarts-panel.git"},
-      {"name": "MIT License", "url": "https://github.com/cehome/map-echarts-panel/LICENSE"}
+      {"name": "MIT License", "url": "https://github.com/cehome-com/map-echarts-panel/blob/master/LICENSE"}
     ],
     "version": "1.0.0",
     "updated": "2018-7-2"
   },
 
   "dependencies": {
-    "grafanaVersion": "4.x.x",
+    "grafanaVersion": "5.x.x",
     "plugins": [ ]
   }
 }
