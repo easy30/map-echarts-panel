@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echarts-liquidfill.min', './libs/echarts-wordcloud.min', './libs/dark', './css/style.css!', './libs/china.js', './libs/beijing.js', './libs/jiangxi.js'], function (_export, _context) {
+System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echarts-liquidfill.min', './libs/echarts-wordcloud.min', './libs/dark', './css/style.css!', './libs/china.js'], function (_export, _context) {
     "use strict";
 
     var MetricsPanelCtrl, _, echarts, _createClass, EchartsCtrl;
@@ -42,7 +42,7 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
             _ = _lodash.default;
         }, function (_libsEchartsMin) {
             echarts = _libsEchartsMin.default;
-        }, function (_libsEchartsLiquidfillMin) {}, function (_libsEchartsWordcloudMin) {}, function (_libsDark) {}, function (_cssStyleCss) {}, function (_libsChinaJs) {}, function (_libsBeijingJs) {}, function (_libsJiangxiJs) {}],
+        }, function (_libsEchartsLiquidfillMin) {}, function (_libsEchartsWordcloudMin) {}, function (_libsDark) {}, function (_cssStyleCss) {}, function (_libsChinaJs) {}],
         execute: function () {
             _createClass = function () {
                 function defineProperties(target, props) {
@@ -87,40 +87,39 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
                     };
 
                     _this.provinces = {
-                        '上海': 'public/plugins/map-echarts-panel/libs/shanghai.js',
-                        '河北': 'public/plugins/map-echarts-panel/libs/hebei.js',
-                        '山西': 'public/plugins/map-echarts-panel/libs/shanxi.js',
-                        '内蒙古': 'public/plugins/map-echarts-panel/libs/neimenggu.js',
-                        '辽宁': 'public/plugins/map-echarts-panel/libs/liaoning.js',
-                        '吉林': 'public/plugins/map-echarts-panel/libs/jilin.js',
-                        '黑龙江': 'public/plugins/map-echarts-panel/libs/heilongjiang.js',
-                        '江苏': 'public/plugins/map-echarts-panel/libs/jiangsu.js',
-                        '浙江': 'public/plugins/map-echarts-panel/libs/zhejiang.js',
-                        '安徽': 'public/plugins/map-echarts-panel/libs/anhui.js',
-                        '福建': 'public/plugins/map-echarts-panel/libs/fujian.js',
-                        '江西': 'public/plugins/map-echarts-panel/libs/data-jiangxi.json',
-                        '山东': 'public/plugins/map-echarts-panel/libs/shandong.js',
-                        '河南': 'public/plugins/map-echarts-panel/libs/henan.js',
-                        '湖北': 'public/plugins/map-echarts-panel/libs/hubei.js',
-                        '湖南': 'public/plugins/map-echarts-panel/libs/hunan.js',
-                        '广东': 'public/plugins/map-echarts-panel/libs/guangdong.js',
-                        '广西': 'public/plugins/map-echarts-panel/libs/guangxi.js',
-                        '海南': 'public/plugins/map-echarts-panel/libs/hainan.js',
-                        '四川': 'public/plugins/map-echarts-panel/libs/sichuan.js',
-                        '贵州': 'public/plugins/map-echarts-panel/libs/guizhou.js',
-                        '云南': 'public/plugins/map-echarts-panel/libs/yunnan.js',
-                        '西藏': 'public/plugins/map-echarts-panel/libs/xizang.js',
-                        '陕西': 'public/plugins/map-echarts-panel/libs/shanxi1.js',
-                        '甘肃': 'public/plugins/map-echarts-panel/libs/gansu.js',
-                        '青海': 'public/plugins/map-echarts-panel/libs/qinghai.js',
-                        '宁夏': 'public/plugins/map-echarts-panel/libs/ningxia.js',
-                        '新疆': 'public/plugins/map-echarts-panel/libs/xinjiang.js',
-                        '北京': 'public/plugins/map-echarts-panel/libs/data-beijing.json',
-                        '天津': 'public/plugins/map-echarts-panel/libs/tianjin.js',
-                        '重庆': 'public/plugins/map-echarts-panel/libs/chongqing.js',
-                        '香港': 'public/plugins/map-echarts-panel/libs/xianggang.js',
-                        '澳门': 'public/plugins/map-echarts-panel/libs/aomen.js',
-                        '台湾': 'public/plugins/map-echarts-panel/libs/taiwan.js'
+                        '上海': 'public/plugins/map-echarts-panel/libs/data-1482909900836-H1BC_1WHg.json',
+                        '河北': 'public/plugins/map-echarts-panel/libs/data-1482909799572-Hkgu_yWSg.json',
+                        '山西': 'public/plugins/map-echarts-panel/libs/data-1482909909703-SyCA_JbSg.json',
+                        '内蒙古': 'public/plugins/map-echarts-panel/libs/data-1482909841923-rkqqdyZSe.json',
+                        '辽宁': 'public/plugins/map-echarts-panel/libs/data-1482909836074-rJV9O1-Hg.json',
+                        '吉林': 'public/plugins/map-echarts-panel/libs/data-1482909832739-rJ-cdy-Hx.json',
+                        '黑龙江': 'public/plugins/map-echarts-panel/libs/data-1482909803892-Hy4__J-Sx.json',
+                        '江苏': 'public/plugins/map-echarts-panel/libs/data-1482909823260-HkDtOJZBx.json',
+                        '浙江': 'public/plugins/map-echarts-panel/libs/data-1482909960637-rkZMYkZBx.json',
+                        '安徽': 'public/plugins/map-echarts-panel/libs/data-1482909768458-HJlU_yWBe.json',
+                        '福建': 'public/plugins/map-echarts-panel/libs/data-1478782908884-B1H6yezWe.json',
+                        '江西': 'public/plugins/map-echarts-panel/libs/data-1482909827542-r12YOJWHe.json',
+                        '山东': 'public/plugins/map-echarts-panel/libs/data-1482909892121-BJ3auk-Se.json',
+                        '河南': 'public/plugins/map-echarts-panel/libs/data-1482909807135-SJPudkWre.json',
+                        '湖北': 'public/plugins/map-echarts-panel/libs/data-1482909813213-Hy6u_kbrl.json',
+                        '湖南': 'public/plugins/map-echarts-panel/libs/data-1482909818685-H17FOkZSl.json',
+                        '广东': 'public/plugins/map-echarts-panel/libs/data-1482909784051-BJgwuy-Sl.json',
+                        '广西': 'public/plugins/map-echarts-panel/libs/data-1482909787648-SyEPuJbSg.json',
+                        '海南': 'public/plugins/map-echarts-panel/libs/data-1482909796480-H12P_J-Bg.json',
+                        '四川': 'public/plugins/map-echarts-panel/libs/data-1482909931094-H17eKk-rg.json',
+                        '贵州': 'public/plugins/map-echarts-panel/libs/data-1482909791334-Bkwvd1bBe.json',
+                        '云南': 'public/plugins/map-echarts-panel/libs/data-1482909957601-HkA-FyWSx.json',
+                        '西藏': 'public/plugins/map-echarts-panel/libs/data-1482927407942-SkOV6Qbrl.json',
+                        '陕西': 'public/plugins/map-echarts-panel/libs/data-1482909918961-BJw1FyZHg.json',
+                        '甘肃': 'public/plugins/map-echarts-panel/libs/data-1482909780863-r1aIdyWHl.json',
+                        '青海': 'public/plugins/map-echarts-panel/libs/data-1482909853618-B1IiOyZSl.json',
+                        '宁夏': 'public/plugins/map-echarts-panel/libs/data-1482909848690-HJWiuy-Bg.json',
+                        '新疆': 'public/plugins/map-echarts-panel/libs/data-1482909952731-B1YZKkbBx.json',
+                        '北京': 'public/plugins/map-echarts-panel/libs/data-1482818963027-Hko9SKJrg.json',
+                        '天津': 'public/plugins/map-echarts-panel/libs/data-1482909944620-r1-WKyWHg.json',
+                        '重庆': 'public/plugins/map-echarts-panel/libs/data-1482909775470-HJDIdk-Se.json',
+                        '香港': 'public/plugins/map-echarts-panel/libs/data-1461584707906-r1hSmtsx.json',
+                        '澳门': 'public/plugins/map-echarts-panel/libs/data-1482909771696-ByVIdJWBx.json'
                     };
 
                     _this.maps = ['世界', '中国', '河北'];
@@ -148,6 +147,7 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
                         var _this2 = this;
 
                         var that = this;
+                        var urlData = void 0;
                         var xmlhttp = void 0;
                         if (this.panel.USE_URL && this.panel.USE_FAKE_DATA && this.panel.fakeData) {
                             this.data = eval(this.panel.fakeData);
@@ -159,7 +159,8 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
                             }
                             xmlhttp.onreadystatechange = function () {
                                 if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                                    that.data = JSON.parse(xmlhttp.responseText);
+                                    urlData = JSON.parse(xmlhttp.responseText);
+                                    that.data = urlData.items;
                                     that.onDataReceived();
                                 }
                             };
@@ -218,8 +219,8 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
                                     geo: {
                                         map: name,
                                         itemStyle: {
-                                            normal: { areaColor: '#08affe', borderColor: '#08affe' },
-                                            emphasis: { areaColor: '#08affe' }
+                                            normal: { areaColor: '#3a8eff', borderColor: '#3a8eff' },
+                                            emphasis: { areaColor: '#3a8eff' }
                                         },
                                         label: {
                                             normal: {
@@ -236,11 +237,15 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
                                         coordinateSystem: 'geo',
                                         symbol: 'pin',
                                         symbolSize: 12,
+                                        mapLocation: {
+                                            y: "center",
+                                            x: "center",
+                                            height: "380"
+                                        },
                                         data: that.data
 
                                     }]
                                 };
-                                //              alert('loadMap---' + JSON.stringify(that.data))
                                 myChart.setOption(option);
                             } else {
                                 //              alert('无法加载该地图');
@@ -274,7 +279,6 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
                                     eval(ctrl.panel.EchartsOption);
                                     myChart.setOption(option);
                                 } else {
-                                    alert('render---' + ctrl.paramValue);
                                     var mapCode = ctrl.provinces[ctrl.paramValue];
                                     ctrl.loadMap(mapCode, ctrl.paramValue, myChart);
                                 }
@@ -286,14 +290,12 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
 
                         //单击切换到省级地图，当mapCode有值,说明可以切换到下级地图
                         myChart.on('click', function (params) {
-                            //        alert('click event----' + params.name);
                             clearTimeout(timeFn);
                             //由于单击事件和双击事件冲突，故单击的响应事件延迟250毫秒执行
                             timeFn = setTimeout(function () {
                                 var name = params.name; //地区name
                                 var mapCode = ctrl.provinces[name]; //地区的json数据
                                 if (!mapCode) {
-                                    //                alert('无此区域地图显示');
                                     return;
                                 }
                                 ctrl.paramValue = name;
@@ -301,6 +303,14 @@ System.register(['app/plugins/sdk', 'lodash', './libs/echarts.min', './libs/echa
                                 ctrl.loadMap(mapCode, name, myChart);
                                 myChart.resize();
                             }, 100);
+                        });
+
+                        // 绑定双击事件，返回全国地图
+                        myChart.on('dblclick', function (params) {
+                            clearTimeout(timeFn);
+                            ctrl.paramValue = '';
+                            //返回全国地图
+                            ctrl.updateData();
                         });
 
                         this.events.on('render', function () {
